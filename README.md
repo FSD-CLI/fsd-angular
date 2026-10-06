@@ -1,8 +1,18 @@
 # FSD Angular Starter
 
-A production-ready Angular 22 starter with a complete Feature-Sliced Design
-architecture. It is the Angular template used by
-[`create-fsd-architecture`](https://www.npmjs.com/package/create-fsd-architecture).
+An Angular 22 starter with a complete Feature-Sliced Design
+architecture. Angular integration with
+[`create-fsd-architecture`](https://www.npmjs.com/package/create-fsd-architecture)
+is planned; published CLI 2.6.1 does not register an Angular template.
+
+## Validation scope
+
+This is a starter template. Repository quality checks cover the checked-in
+example; production deployment requires validating your application, runtime,
+API integration, authentication, and hosting configuration. CLI support and
+release verification are documented at [fsdcli.me](https://fsdcli.me).
+
+Security snapshot (2026-10-06): The production security gate currently fails on the query-devtools/Solid Seroval dependency chain (5 critical aggregate entries). Angular router/build fixes are applied; the remaining findings are not waived. See [SECURITY.md](SECURITY.md) and the linked cross-repository inventory.
 
 ## Included stack
 
@@ -20,7 +30,7 @@ architecture. It is the Angular template used by
 ## Requirements
 
 - Node.js `22.22.3+`, `24.15.0+`, or `26+`
-- npm 11 or another package manager selected through the FSD CLI
+- npm 11 (the package manager used by this standalone template)
 
 Use the pinned runtime locally with:
 
