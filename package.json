@@ -14,10 +14,16 @@
     "format:check": "prettier --check .",
     "fsd:check": "steiger ./src",
     "audit": "npm audit --omit=dev --audit-level=high",
-    "ci": "npm run fsd:check && npm run lint && npm run typecheck && npm run test && npm run build",
+    "test:serialization": "node --test scripts/serialization-security.test.mjs",
+    "ci": "npm run fsd:check && npm run lint && npm run typecheck && npm run test:serialization && npm run test && npm run build",
     "prepare": "husky"
   },
   "private": true,
+  "overrides": {
+    "solid-js": {
+      "seroval": "1.6.8"
+    }
+  },
   "packageManager": "npm@11.12.1",
   "engines": {
     "node": "^22.22.3 || ^24.15.0 || >=26.0.0"

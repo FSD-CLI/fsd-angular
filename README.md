@@ -12,7 +12,7 @@ example; production deployment requires validating your application, runtime,
 API integration, authentication, and hosting configuration. CLI support and
 release verification are documented at [fsdcli.me](https://fsdcli.me).
 
-Security snapshot (2026-10-06): The production security gate currently fails on the query-devtools/Solid Seroval dependency chain (5 critical aggregate entries). Angular router/build fixes are applied; the remaining findings are not waived. See [SECURITY.md](SECURITY.md) and the linked cross-repository inventory.
+Security snapshot (2026-10-06): The production audit passes with zero findings after a Solid-scoped Seroval 1.6.8 override. `npm run test:serialization` verifies rejection of the advisory payloads and preserves ordinary/plugin/SSR serialization; it runs in quality and security CI. The override is required while Solid pins the vulnerable 1.5.x range. Development-only audit findings remain separate. See [SECURITY.md](SECURITY.md) and the linked cross-repository inventory.
 
 ## Included stack
 
