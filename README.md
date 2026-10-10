@@ -1,8 +1,9 @@
 # FSD Angular Starter
 
-A production-ready Angular 22 starter with a complete Feature-Sliced Design
-architecture. It is the Angular template used by
-[`create-fsd-architecture`](https://www.npmjs.com/package/create-fsd-architecture).
+A standalone Angular 22 starter organized with Feature-Sliced Design.
+Angular is not registered in the current stable
+[`create-fsd-architecture`](https://www.npmjs.com/package/create-fsd-architecture)
+CLI. Clone this repository and use its local scripts to work with the starter.
 
 ## Included stack
 
@@ -20,7 +21,7 @@ architecture. It is the Angular template used by
 ## Requirements
 
 - Node.js `22.22.3+`, `24.15.0+`, or `26+`
-- npm 11 or another package manager selected through the FSD CLI
+- npm 11.12.1, as pinned in `package.json`
 
 Use the pinned runtime locally with:
 
@@ -76,15 +77,9 @@ The TypeScript configuration exposes `@app`, `@pages`, `@widgets`, `@features`,
 
 ## Generate slices
 
-After this template is added to the stable CLI registry, generators will create
-Angular-native standalone components and lazy route entries:
-
-```bash
-npx create-fsd-architecture -g feature auth
-npx create-fsd-architecture -g entity product
-npx create-fsd-architecture -g widget navbar
-npx create-fsd-architecture -g page account
-```
+Angular generators are not available in the current stable CLI. Create slices
+manually using the structure and aliases above until an Angular adapter and
+template registry entry are implemented and verified.
 
 ## Architecture checks
 
