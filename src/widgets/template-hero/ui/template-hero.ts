@@ -18,7 +18,7 @@ import { AppBadge } from '@shared/ui';
         </a>
         <a
           class="rounded-full border border-white/15 px-4 py-2 text-sm text-red-100 transition hover:border-red-300/50 hover:text-white"
-          href="https://fsd-docs.vercel.app"
+          href="https://fsdcli.me"
         >
           Documentation
         </a>
