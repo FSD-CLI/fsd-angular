@@ -38,8 +38,8 @@ import { AppBadge } from '@shared/ui';
           Angular architecture that is <span class="text-red-300">ready to scale.</span>
         </h1>
         <p class="mt-7 max-w-2xl text-lg leading-8 text-stone-300 sm:text-xl">
-          Standalone Angular, signals, complete Feature-Sliced Design layers, and production
-          guardrails from the first commit.
+          Standalone Angular, signals, complete Feature-Sliced Design layers, and local quality
+          checks from the first commit.
         </p>
 
         <div class="mt-10 flex flex-col gap-4 sm:flex-row">

@@ -3,7 +3,7 @@ export const templateInfo = {
   architecture: 'Feature-Sliced Design',
   stack: ['Standalone', 'Signals', 'Zoneless', 'Vitest'],
   commands: {
-    generateFeature: 'npx create-fsd-architecture -g feature checkout',
+    generateFeature: 'npm run check:template',
     verify: 'npm run ci',
   },
 } as const;

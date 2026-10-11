@@ -5,6 +5,20 @@ Angular is not registered in the current stable
 [`create-fsd-architecture`](https://www.npmjs.com/package/create-fsd-architecture)
 CLI. Clone this repository and use its local scripts to work with the starter.
 
+## Template contract
+
+`fsd.config.json` records the Angular-native stack. `npm run check:template`
+checks the configuration, dependencies, six layers, aliases, and application
+entrypoints. The CLI source can inspect this contract with `check`, `doctor`
+and `config`; Angular scaffolding, generators, and managed upgrades remain
+unavailable until the separate Angular adapter work is complete.
+
+## Validation scope
+
+This starter includes local quality checks. Application-specific security,
+authentication, backend integration and deployment need their own validation.
+Passing template checks does not certify production deployment.
+
 ## Included stack
 
 - Angular 22 standalone components and lazy Router configuration

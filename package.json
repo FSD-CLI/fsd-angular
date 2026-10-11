@@ -14,8 +14,9 @@
     "format:check": "prettier --check .",
     "fsd:check": "steiger ./src",
     "audit": "npm audit --omit=dev --audit-level=high",
-    "ci": "npm run fsd:check && npm run lint && npm run typecheck && npm run test && npm run build",
-    "prepare": "husky"
+    "ci": "npm run check:template && npm run fsd:check && npm run lint && npm run typecheck && npm run test && npm run build",
+    "prepare": "husky",
+    "check:template": "node scripts/check-template.mjs"
   },
   "private": true,
   "packageManager": "npm@11.12.1",

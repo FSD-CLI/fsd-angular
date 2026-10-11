@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/FSD-CLI/cli/main/schema/fsd.config.schema.json",
+  "schemaVersion": 1,
+  "framework": "angular",
+  "packageManager": "npm",
+  "apiClient": "angular-http",
+  "serverState": "angular-query",
+  "clientState": "ngrx-signals",
+  "forms": "angular-forms-zod",
+  "ui": "shared-ui"
+}
