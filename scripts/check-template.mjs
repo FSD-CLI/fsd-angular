@@ -60,7 +60,10 @@ export function checkTemplate(root = fileURLToPath(new URL('../', import.meta.ur
     assert.ok(fs.statSync(path.join(root, entry)).isFile(), `Missing entrypoint: ${entry}`);
   }
   assert.match(read('src/main.ts'), /bootstrapApplication/);
-  assert.match(read('src/app/app.routes.ts'), /loadComponent/);
+  const routes = read('src/app/app.routes.ts');
+  assert.match(routes, /loadComponent/);
+  // `create-fsd-architecture -g page` registers lazy routes between these markers.
+  assert.match(routes, /\/\/ fsd-cli:routes:start\n[\s\S]*\/\/ fsd-cli:routes:end/, 'Missing CLI route markers');
   assert.match(read('src/shared/api/api-client.ts'), /HttpClient/);
   assert.match(read('src/app/app.config.ts'), /provideAppQuery/);
 
@@ -101,5 +104,5 @@ export function checkTemplate(root = fileURLToPath(new URL('../', import.meta.ur
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   checkTemplate();
-  console.log('Angular template contract passed (inspection only; generators unavailable).');
+  console.log('Angular template contract passed.');
 }

@@ -1,17 +1,20 @@
 # FSD Angular Starter
 
 A standalone Angular 22 starter organized with Feature-Sliced Design.
-Angular is not registered in the current stable
+Create a project from it with
 [`create-fsd-architecture`](https://www.npmjs.com/package/create-fsd-architecture)
-CLI. Clone this repository and use its local scripts to work with the starter.
+(a CLI release that includes Angular support):
+
+```bash
+npx create-fsd-architecture my-app --framework angular
+```
 
 ## Template contract
 
 `fsd.config.json` records the Angular-native stack. `npm run check:template`
 checks the configuration, dependencies, six layers, aliases, and application
-entrypoints. The CLI source can inspect this contract with `check`, `doctor`
-and `config`; Angular scaffolding, generators, and managed upgrades remain
-unavailable until the separate Angular adapter work is complete.
+entrypoints. The CLI uses it to configure new projects, generate slices and
+plan managed upgrades.
 
 ## Validation scope
 
@@ -91,9 +94,19 @@ The TypeScript configuration exposes `@app`, `@pages`, `@widgets`, `@features`,
 
 ## Generate slices
 
-Angular generators are not available in the current stable CLI. Create slices
-manually using the structure and aliases above until an Angular adapter and
-template registry entry are implemented and verified.
+```bash
+npx create-fsd-architecture -g feature checkout
+npx create-fsd-architecture -g entity product
+npx create-fsd-architecture -g widget navbar
+npx create-fsd-architecture -g page account
+npx create-fsd-architecture -g feature auth
+npx create-fsd-architecture -g shared ui
+```
+
+Generated slices are standalone `OnPush` components with signal inputs. Features
+use TanStack Angular Query `inject*` helpers and an NgRx Signal Store; `feature
+auth` adds typed reactive forms validated with zod. `-g page` registers a lazy
+route between the `fsd-cli:routes` markers in `src/app/app.routes.ts`.
 
 ## Architecture checks
 
