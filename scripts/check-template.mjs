@@ -63,6 +63,39 @@ export function checkTemplate(root = fileURLToPath(new URL('../', import.meta.ur
   assert.match(read('src/app/app.routes.ts'), /loadComponent/);
   assert.match(read('src/shared/api/api-client.ts'), /HttpClient/);
   assert.match(read('src/app/app.config.ts'), /provideAppQuery/);
+
+  // Zoneless: no zone.js dependency, polyfill, or zone-based change detection provider.
+  for (const field of ['dependencies', 'devDependencies']) {
+    assert.ok(!pkg[field]?.['zone.js'], `zone.js must not be in ${field} (template is zoneless)`);
+  }
+  const angularJson = read('angular.json');
+  assert.doesNotMatch(angularJson, /zone\.js/, 'angular.json must not load zone.js polyfills');
+
+  // Standalone + OnPush: every component under src is standalone and uses OnPush.
+  const sourceFiles = (dir) =>
+    fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) return sourceFiles(full);
+      return entry.name.endsWith('.ts') && !entry.name.endsWith('.spec.ts') ? [full] : [];
+    });
+  for (const file of sourceFiles(path.join(root, 'src'))) {
+    const source = fs.readFileSync(file, 'utf8');
+    const relative = path.relative(root, file);
+    assert.doesNotMatch(source, /@NgModule\s*\(/, `NgModule is not allowed: ${relative}`);
+    assert.doesNotMatch(source, /standalone:\s*false/, `Non-standalone component: ${relative}`);
+    assert.doesNotMatch(
+      source,
+      /provideZoneChangeDetection\s*\(/,
+      `Zone-based change detection is not allowed: ${relative}`,
+    );
+    if (/@Component\s*\(/.test(source)) {
+      assert.match(
+        source,
+        /ChangeDetectionStrategy\.OnPush/,
+        `Component must use OnPush change detection: ${relative}`,
+      );
+    }
+  }
   return config;
 }
 
