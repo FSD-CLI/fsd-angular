@@ -9,19 +9,23 @@ export function checkTemplate(root = fileURLToPath(new URL('../', import.meta.ur
   const expected = {
     schemaVersion: 1,
     framework: 'angular',
-    packageManager: 'npm',
     apiClient: 'angular-http',
     serverState: 'angular-query',
     clientState: 'ngrx-signals',
     forms: 'angular-forms-zod',
     ui: 'shared-ui',
   };
+  // Projects created with pnpm, yarn or bun record their manager here.
+  assert.ok(
+    ['npm', 'pnpm', 'yarn', 'bun'].includes(config.packageManager),
+    `Unsupported packageManager: ${config.packageManager}`,
+  );
   for (const [key, value] of Object.entries(expected)) {
     assert.equal(config[key], value, `Template config mismatch: ${key}`);
   }
   assert.deepEqual(
     Object.keys(config)
-      .filter((key) => key !== '$schema')
+      .filter((key) => key !== '$schema' && key !== 'packageManager')
       .sort(),
     Object.keys(expected).sort(),
     'Unexpected config property',
@@ -63,7 +67,11 @@ export function checkTemplate(root = fileURLToPath(new URL('../', import.meta.ur
   const routes = read('src/app/app.routes.ts');
   assert.match(routes, /loadComponent/);
   // `create-fsd-architecture -g page` registers lazy routes between these markers.
-  assert.match(routes, /\/\/ fsd-cli:routes:start\n[\s\S]*\/\/ fsd-cli:routes:end/, 'Missing CLI route markers');
+  assert.match(
+    routes,
+    /\/\/ fsd-cli:routes:start\n[\s\S]*\/\/ fsd-cli:routes:end/,
+    'Missing CLI route markers',
+  );
   assert.match(read('src/shared/api/api-client.ts'), /HttpClient/);
   assert.match(read('src/app/app.config.ts'), /provideAppQuery/);
 
