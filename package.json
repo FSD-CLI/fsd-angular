@@ -19,7 +19,6 @@
     "check:template": "node scripts/check-template.mjs"
   },
   "private": true,
-  "packageManager": "npm@11.12.1",
   "engines": {
     "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
   },
